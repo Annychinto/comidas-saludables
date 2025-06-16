@@ -2,183 +2,200 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Recetas Saludables para Niños</title>
   <style>
+    /* Estilos generales */
     body {
-      font-family: Comic Sans MS, sans-serif;
-      background: #f0fff0;
-      padding: 20px;
-      color: #2c3e50;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
+      background: #f7f9fc;
+      color: #333;
+      line-height: 1.6;
     }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
-
-    h1, h2 {
-      text-align: center;
-      color: #27ae60;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-bottom: 30px;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    input, select, button {
-      padding: 12px;
-      font-size: 1em;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      background-color: #27ae60;
+    header {
+      background: #4CAF50;
       color: white;
-      font-weight: bold;
-      cursor: pointer;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0; left: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
-    button:hover {
-      background-color: #219150;
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 1.8rem;
     }
-
+    nav {
+      margin-top: 0.5rem;
+    }
+    nav a {
+      color: white;
+      margin-right: 1.2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #c8e6c9;
+    }
+    main {
+      max-width: 900px;
+      margin: 100px auto 40px;
+      padding: 0 1rem;
+    }
+    section {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #ddd;
+    }
+    h2 {
+      color: #4CAF50;
+      margin-bottom: 0.8rem;
+      border-bottom: 3px solid #81c784;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+    .recipe {
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    .recipe:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .ingredients, .preparation, .benefits {
+      margin-top: 0.5rem;
+    }
+    .ingredients ul {
+      list-style: disc inside;
+      margin: 0.3rem 0 1rem 0;
+      padding-left: 1rem;
+    }
     iframe {
       width: 100%;
       height: 300px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      border-radius: 8px;
       border: none;
+      margin-top: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
-
-    ul {
-      list-style-type: square;
-      padding-left: 20px;
+    iframe:hover {
+      transform: scale(1.02);
     }
-
-    .hidden {
-      display: none;
-    }
-
-    .recipe-list {
-      margin-top: 20px;
+    footer {
+      text-align: center;
+      padding: 1.5rem 0;
+      background: #4CAF50;
+      color: white;
+      font-weight: 600;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🌟 Mi Menú Saludable</h1>
 
-    <!-- Encuesta -->
-    <div id="surveySection">
-      <h2>📝 ¡Cuéntanos qué te gusta!</h2>
-      <form id="surveyForm">
-        <label>🍽️ ¿Qué te gusta más comer?</label>
-        <select id="gusto">
-          <option value="">Elige una opción</option>
-          <option value="frutas">Frutas</option>
-          <option value="verduras">Verduras</option>
-          <option value="ambos">Ambos</option>
-        </select>
+<header>
+  <h1>Recetas Saludables para Niños</h1>
+  <nav>
+    <a href="#dulces">Dulces</a>
+    <a href="#salados">Salados</a>
+    <a href="#picantes">Picantes</a>
+  </nav>
+</header>
 
-        <label>👨‍🍳 ¿Te gusta cocinar?</label>
-        <select id="cocinar">
-          <option value="">Elige una opción</option>
-          <option value="si">Sí</option>
-          <option value="no">No</option>
-          <option value="a veces">A veces</option>
-        </select>
-
-        <label>🍬 ¿Prefieres cosas dulces o saladas?</label>
-        <select id="dulceSalado">
-          <option value="">Elige una opción</option>
-          <option value="dulce">Dulces (naturales)</option>
-          <option value="salado">Saladas</option>
-          <option value="ambos">Ambas</option>
-        </select>
-
-        <button type="submit">Ver recetas personalizadas</button>
-      </form>
-    </div>
-
-    <!-- Recetas -->
-    <div id="recipeSection" class="hidden">
-      <h2>🍽️ Recetas para ti</h2>
-      <iframe src="https://www.youtube.com/embed/FaX86R3hRtE" title="Video saludable para niños" allowfullscreen></iframe>
-      <div class="recipe-list" id="recipeList">
-        <!-- Aquí se mostrarán las recetas personalizadas -->
+<main>
+  <section id="dulces">
+    <h2>🍌 Recetas Dulces Saludables</h2>
+    <article class="recipe">
+      <h3>Galletas de avena y manzana</h3>
+      <div class="ingredients">
+        <strong>Ingredientes:</strong>
+        <ul>
+          <li>1 taza de avena en hojuelas</li>
+          <li>1 manzana</li>
+          <li>1 huevo</li>
+          <li>1/2 cucharadita de canela</li>
+        </ul>
       </div>
-    </div>
-  </div>
+      <div class="preparation">
+        <strong>Preparación:</strong>
+        <p>Precalienta el horno a 180°C y forra una bandeja con papel pergamino. Ralla la manzana y mezcla con la avena, el huevo y la canela. Forma pequeñas bolitas con la mezcla y colócalas en la bandeja. Hornea durante 15-20 minutos o hasta que estén doradas.</p>
+      </div>
+      <div class="benefits">
+        <strong>Beneficios:</strong> Estas galletas son ricas en fibra y antioxidantes, ideales para una merienda saludable.
+      </div>
+      <iframe src="https://www.youtube.com/embed/z9ov3C7XM3o" allowfullscreen></iframe>
+    </article>
+    <!-- Aquí puedes agregar más recetas dulces -->
+  </section>
 
-  <script>
-    const surveyForm = document.getElementById("surveyForm");
-    const recipeSection = document.getElementById("recipeSection");
-    const recipeList = document.getElementById("recipeList");
+  <section id="salados">
+    <h2>🥕 Recetas Saladas Saludables</h2>
+    <article class="recipe">
+      <h3>Hummus casero con palitos de verduras</h3>
+      <div class="ingredients">
+        <strong>Ingredientes:</strong>
+        <ul>
+          <li>1 taza de garbanzos cocidos</li>
+          <li>2 cucharadas de tahini (pasta de sésamo)</li>
+          <li>Jugo de 1 limón</li>
+          <li>1 diente de ajo</li>
+          <li>2 cucharadas de aceite de oliva</li>
+          <li>Sal al gusto</li>
+          <li>Verduras variadas (zanahorias, pepinos, apio)</li>
+        </ul>
+      </div>
+      <div class="preparation">
+        <strong>Preparación:</strong>
+        <p>En una licuadora o procesador de alimentos, mezcla los garbanzos, tahini, jugo de limón, ajo y aceite de oliva hasta obtener una pasta suave. Si es necesario, añade un poco de agua para ajustar la consistencia. Lava y corta las verduras en palitos. Sirve el hummus en un bol acompañado de los palitos de verduras.</p>
+      </div>
+      <div class="benefits">
+        <strong>Beneficios:</strong> El hummus es rico en proteínas vegetales y fibra, y las verduras aportan vitaminas esenciales.
+      </div>
+      <iframe src="https://www.youtube.com/embed/VuTis6DmIME" allowfullscreen></iframe>
+    </article>
+    <!-- Más recetas saladas aquí -->
+  </section>
 
-    surveyForm.addEventListener("submit", function(e) {
-      e.preventDefault();
+  <section id="picantes">
+    <h2>🌶 Recetas Picantes para Pequeños Aventureros</h2>
+    <article class="recipe">
+      <h3>Tostadas de tomate y albahaca</h3>
+      <div class="ingredients">
+        <strong>Ingredientes:</strong>
+        <ul>
+          <li>4 rebanadas de pan integral</li>
+          <li>2 tomates maduros</li>
+          <li>Hojas de albahaca fresca</li>
+          <li>Aceite de oliva</li>
+          <li>Sal y pimienta al gusto</li>
+        </ul>
+      </div>
+      <div class="preparation">
+        <strong>Preparación:</strong>
+        <p>Tuesta las rebanadas de pan integral. Lava y corta los tomates en rodajas finas. Lava las hojas de albahaca. Coloca las rodajas de tomate sobre las tostadas. Añade las hojas de albahaca encima. Rocía con un poco de aceite de oliva y sazona con sal y pimienta al gusto.</p>
+      </div>
+      <div class="benefits">
+        <strong>Beneficios:</strong> Esta receta es rica en antioxidantes y fibra, ideal como aperitivo saludable.
+      </div>
+      <iframe src="https://www.youtube.com/embed/1_mKLRtdjgQ" allowfullscreen></iframe>
+    </article>
+    <!-- Más recetas picantes aquí -->
+  </section>
+</main>
 
-      // Obtener respuestas
-      const gusto = document.getElementById("gusto").value;
-      const cocinar = document.getElementById("cocinar").value;
-      const dulceSalado = document.getElementById("dulceSalado").value;
+<footer>
+  &copy; 2025 Recetas Saludables para Niños | Creado con 💚 por Ti y ChatGPT
+</footer>
 
-      // Ocultar encuesta y mostrar recetas
-      surveyForm.parentElement.classList.add("hidden");
-      recipeSection.classList.remove("hidden");
-
-      // Generar recetas personalizadas
-      let recetas = [];
-
-      // Según gustos
-      if (gusto === "frutas" || gusto === "ambos") {
-        recetas.push("🍌 Batido de plátano con leche vegetal");
-        recetas.push("🍓 Yogur natural con frutas");
-      }
-      if (gusto === "verduras" || gusto === "ambos") {
-        recetas.push("🥕 Palitos de zanahoria con hummus");
-        recetas.push("🌽 Mazorca con limón");
-      }
-
-      // Según cocinar
-      if (cocinar === "si" || cocinar === "a veces") {
-        recetas.push("🍳 Mini omelets con espinaca");
-        recetas.push("🥪 Sandwich de aguacate hecho por ti");
-      } else {
-        recetas.push("🍏 Manzana con mantequilla de maní");
-      }
-
-      // Según dulces o salados
-      if (dulceSalado === "dulce" || dulceSalado === "ambos") {
-        recetas.push("🍪 Galletitas de avena sin azúcar");
-      }
-      if (dulceSalado === "salado" || dulceSalado === "ambos") {
-        recetas.push("🧀 Rollitos de queso con pan integral");
-      }
-
-      // Mostrar recetas
-      let html = "<ul>";
-      recetas.forEach(receta => {
-        html += `<li>${receta}</li>`;
-      });
-      html += "</ul>";
-
-      recipeList.innerHTML = html;
-    });
-  </script>
 </body>
 </html>
