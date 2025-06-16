@@ -1,1 +1,184 @@
 # comidas-saludables
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recetas Saludables para Niños</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, sans-serif;
+      background: #f0fff0;
+      padding: 20px;
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #27ae60;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select, button {
+      padding: 12px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #27ae60;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #219150;
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: none;
+    }
+
+    ul {
+      list-style-type: square;
+      padding-left: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .recipe-list {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌟 Mi Menú Saludable</h1>
+
+    <!-- Encuesta -->
+    <div id="surveySection">
+      <h2>📝 ¡Cuéntanos qué te gusta!</h2>
+      <form id="surveyForm">
+        <label>🍽️ ¿Qué te gusta más comer?</label>
+        <select id="gusto">
+          <option value="">Elige una opción</option>
+          <option value="frutas">Frutas</option>
+          <option value="verduras">Verduras</option>
+          <option value="ambos">Ambos</option>
+        </select>
+
+        <label>👨‍🍳 ¿Te gusta cocinar?</label>
+        <select id="cocinar">
+          <option value="">Elige una opción</option>
+          <option value="si">Sí</option>
+          <option value="no">No</option>
+          <option value="a veces">A veces</option>
+        </select>
+
+        <label>🍬 ¿Prefieres cosas dulces o saladas?</label>
+        <select id="dulceSalado">
+          <option value="">Elige una opción</option>
+          <option value="dulce">Dulces (naturales)</option>
+          <option value="salado">Saladas</option>
+          <option value="ambos">Ambas</option>
+        </select>
+
+        <button type="submit">Ver recetas personalizadas</button>
+      </form>
+    </div>
+
+    <!-- Recetas -->
+    <div id="recipeSection" class="hidden">
+      <h2>🍽️ Recetas para ti</h2>
+      <iframe src="https://www.youtube.com/embed/FaX86R3hRtE" title="Video saludable para niños" allowfullscreen></iframe>
+      <div class="recipe-list" id="recipeList">
+        <!-- Aquí se mostrarán las recetas personalizadas -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const surveyForm = document.getElementById("surveyForm");
+    const recipeSection = document.getElementById("recipeSection");
+    const recipeList = document.getElementById("recipeList");
+
+    surveyForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Obtener respuestas
+      const gusto = document.getElementById("gusto").value;
+      const cocinar = document.getElementById("cocinar").value;
+      const dulceSalado = document.getElementById("dulceSalado").value;
+
+      // Ocultar encuesta y mostrar recetas
+      surveyForm.parentElement.classList.add("hidden");
+      recipeSection.classList.remove("hidden");
+
+      // Generar recetas personalizadas
+      let recetas = [];
+
+      // Según gustos
+      if (gusto === "frutas" || gusto === "ambos") {
+        recetas.push("🍌 Batido de plátano con leche vegetal");
+        recetas.push("🍓 Yogur natural con frutas");
+      }
+      if (gusto === "verduras" || gusto === "ambos") {
+        recetas.push("🥕 Palitos de zanahoria con hummus");
+        recetas.push("🌽 Mazorca con limón");
+      }
+
+      // Según cocinar
+      if (cocinar === "si" || cocinar === "a veces") {
+        recetas.push("🍳 Mini omelets con espinaca");
+        recetas.push("🥪 Sandwich de aguacate hecho por ti");
+      } else {
+        recetas.push("🍏 Manzana con mantequilla de maní");
+      }
+
+      // Según dulces o salados
+      if (dulceSalado === "dulce" || dulceSalado === "ambos") {
+        recetas.push("🍪 Galletitas de avena sin azúcar");
+      }
+      if (dulceSalado === "salado" || dulceSalado === "ambos") {
+        recetas.push("🧀 Rollitos de queso con pan integral");
+      }
+
+      // Mostrar recetas
+      let html = "<ul>";
+      recetas.forEach(receta => {
+        html += `<li>${receta}</li>`;
+      });
+      html += "</ul>";
+
+      recipeList.innerHTML = html;
+    });
+  </script>
+</body>
+</html>
